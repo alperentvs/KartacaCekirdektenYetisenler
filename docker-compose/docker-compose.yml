@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+    flask:
+        image: alperentvs/kartaca:py
+        container_name: flask
+        ports:
+            - "4444:5000"
+            
+
+    nodejs:
+        image: alperentvs/kartaca:nodejs
+        container_name: nodejs
+        ports:
+            - "5555:8080"
+        
+    haproxy:
+        build: ./haproxy
+        container_name: haproxy
+        links:
+          - "flask"
+          - "nodejs"
+        ports:
+            - "8888:80"
+        
+
+
+        
+    
+            
+
+
+        
+        
